@@ -1,5 +1,7 @@
 package fr.ealen.legorafi;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -25,11 +27,29 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.article_menu);
+        getMenuInflater().inflate(R.menu.article_menu, menu);
         return true;
     }
 
     public boolean onOptionSelectedItem(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.share: {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, getIntent().getStringExtra("link"));
 
+                startActivity(intent.createChooser(intent, "Share!"));
+
+                return true;
+            }
+
+            case R.id.open: {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getIntent().getStringExtra("link")));
+                startActivity(intent);
+
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

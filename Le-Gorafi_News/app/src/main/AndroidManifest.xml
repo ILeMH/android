@@ -18,6 +18,13 @@
             </intent-filter>
         </activity>
         <activity android:name="fr.ealen.legorafi.NewsActivity" android:parentActivityName="fr.ealen.legorafi.MainActivity"></activity>
+        <activity android:name=".ShareActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
