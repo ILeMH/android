@@ -1,6 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="fill_parent">
 
-</LinearLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:background="@android:color/white"
+            android:id="@+id/prenomInscription"
+            android:hint="Prenom" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:background="@android:color/white"
+            android:id="@+id/nomInscription"
+            android:hint="Nom" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:background="@android:color/white"
+            android:id="@+id/pseudoInscription"
+            android:hint="Pseudo" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:background="@android:color/white"
+            android:id="@+id/mdpInscription"
+            android:hint="Mot de passe" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:background="@android:color/white"
+            android:id="@+id/verificationMdpInscription"
+            android:hint="Vérification mot de passe" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sexeGroupInscription">
+
+                <RadioButton
+                    android:text="Homme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/homme" />
+
+                <RadioButton
+                    android:text="Femme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/femme"
+                    android:layout_weight="1" />
+            </RadioGroup>
+
+            <TextView
+                android:text="Date d'anniversaire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/texteAnniversaire"
+                android:textColor="@color/colorPrimary"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="18sp"/>
+
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/datePicker3"
+            android:calendarViewShown="false"
+            android:headerBackground="@android:color/holo_blue_light"
+            android:clickable="true"
+            android:clipToPadding="false"
+            android:contextClickable="true"
+            android:datePickerMode="spinner" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="Annuler"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonInscriptionAnnule"
+                android:layout_alignBottom="@+id/button2"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="57dp"
+                android:layout_alignParentTop="true"
+                style="@style/Widget.AppCompat.Button" />
+
+            <Button
+                android:text="Inscription"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonInscription"
+                android:background="@color/colorPrimary"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:elevation="14dp"
+                style="@style/Widget.AppCompat.Button" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

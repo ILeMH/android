@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".inscription"></activity>
+        <activity android:name=".Connecte"></activity>
+        <activity android:name=".CoursFinis"></activity>
     </application>
 
 </manifest>

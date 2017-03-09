@@ -1,0 +1,4 @@
+sql lite en moteur sur android.
+par dessus soit on utilise ça, comme en Java.
+Soit avec bibli ters, ORM ==> comme doctrine.
+Sinon, professionnalisante : REALM permet de maper model objet et faire persister model objet. Avantage : ultra rapide.

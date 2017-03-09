@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">EasyLanguages</string>
+    <string name="connection">Connexion</string>
+    <string name="contact">Contact</string>
+    <string name="home">Accueil</string>
+    <string name="confirmation_connection">Confirmer</string>
+    <string name="annuler_connection">Annuler</string>
+
+    <string name="username">Utilisateur</string>
+    <string name="password">Mot de passe</string>
+</resources>

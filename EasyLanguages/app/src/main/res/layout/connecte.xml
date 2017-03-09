@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".connecte">
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_height="47dp"
+        android:layout_width="match_parent"
+        android:text="Espace membre"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:fontFamily="casual"
+        android:textColor="#2858FF"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:background="?attr/colorButtonNormal" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:rowCount="2"
+        >
+
+
+        <Button
+            android:id="@+id/cours"
+            android:text="Cours du jour"
+            android:layout_gravity="left"
+            android:layout_marginLeft="100px"
+            android:background="@drawable/styleprincipale"
+            />
+
+        <Button
+            android:id="@+id/coursValides"
+            android:text="Cours validés"
+            android:layout_gravity="right"
+            android:layout_marginRight="100px"
+            />
+
+        <Button
+            android:id="@+id/contacterMentor"
+            android:layout_width="match_parent"
+            android:layout_columnSpan="2"
+            android:text="Rendez-vous"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="20dp"
+            />
+    </GridLayout>
+</LinearLayout>
