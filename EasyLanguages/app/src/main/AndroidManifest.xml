@@ -8,16 +8,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activites.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".inscription"></activity>
-        <activity android:name=".Connecte"></activity>
-        <activity android:name=".CoursFinis"></activity>
+        <activity android:name=".activites.Inscription"></activity>
+        <activity android:name=".activites.Connecte"></activity>
+        <activity android:name=".activites.CoursFinis"></activity>
+        <activity android:name=".activites.CoursDetail"></activity>
+        <activity android:name=".activites.Alertes"></activity>
+        <activity android:name=".activites.DateFragment"></activity>
     </application>
 
 </manifest>

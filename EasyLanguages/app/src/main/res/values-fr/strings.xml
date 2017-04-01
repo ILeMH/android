@@ -9,4 +9,14 @@
 
     <string name="username">Utilisateur</string>
     <string name="password">Mot de passe</string>
+
+    <string-array name="spinnerliste">
+        <item>Cours1</item>
+        <item>Cours2</item>
+        <item>Cours3</item>
+        <item>Cours4</item>
+        <item>Cours5</item>
+        <item>Cours6</item>
+        <item>Cours7</item>
+    </string-array>
 </resources>
