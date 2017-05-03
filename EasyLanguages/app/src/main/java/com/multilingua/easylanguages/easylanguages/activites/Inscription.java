@@ -88,6 +88,7 @@ public class Inscription extends GlobalForMenu {
 
                                 Intent goHome = new Intent(Inscription.this, MainActivity.class);
                                 startActivity(goHome);
+                                finish();
                             }
                         }
                     }

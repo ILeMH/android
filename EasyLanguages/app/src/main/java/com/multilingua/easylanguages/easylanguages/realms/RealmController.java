@@ -6,7 +6,10 @@ package com.multilingua.easylanguages.easylanguages.realms;
 
 import android.app.Application;
 
+import com.multilingua.easylanguages.easylanguages.element.Alerte;
+
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public final class RealmController{

@@ -1,13 +1,13 @@
 package com.multilingua.easylanguages.easylanguages.activites;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Adapter;
 
 import com.multilingua.easylanguages.easylanguages.adapters.AlerteAdapter;
 import com.multilingua.easylanguages.easylanguages.element.Alerte;
@@ -35,7 +35,8 @@ public class Alertes extends GlobalForMenu {
         Users client = rc.getUserByName(GlobalForMenu.utilisateur);
 
         this.listeDesAlertes = client.getAlertes();
-        adapter = new AlerteAdapter(listeDesAlertes);
+        Context con = getApplicationContext();
+        adapter = new AlerteAdapter(listeDesAlertes, con, client);
         Intent i = getIntent();
         String[] listeDeCours = i.getStringArrayExtra("liste");
         setContentView(R.layout.alertes);
@@ -53,7 +54,6 @@ public class Alertes extends GlobalForMenu {
         this.rv = (RecyclerView) findViewById(R.id.alerteListe);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rv.setAdapter(adapter);
-        //rv.setAdapter(new AlerteAdapter(listeDesAlertes));
         setTitle("Mes alertes");
     }
 
@@ -79,6 +79,5 @@ public class Alertes extends GlobalForMenu {
         this.rv = (RecyclerView) findViewById(R.id.alerteListe);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rv.setAdapter(adapter);
-        //rv.setAdapter(new AlerteAdapter(listeDesAlertes));
     }
 }

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -15,11 +16,11 @@ import com.multilingua.easylanguages.easylanguages.R;
 
 public class ConformationDeconnexion extends DialogFragment {
 
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(final Bundle savedInstanceState) {
 
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.connection)
-                .setPositiveButton(R.string.confirmation_connection, new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.deconnection)
+                .setPositiveButton(R.string.deconnection, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent deconnexion = new Intent(getActivity(), MainActivity.class);
                         startActivity(deconnexion);
@@ -33,7 +34,6 @@ public class ConformationDeconnexion extends DialogFragment {
                 });
 
         Dialog dial = builder.create();
-
 
         return dial;
     }

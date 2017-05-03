@@ -3,12 +3,12 @@ package com.multilingua.easylanguages.easylanguages.activites;
 import android.app.Activity;
 import android.content.Intent;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.ShareCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,6 +21,8 @@ import java.util.Date;
 
 import io.realm.Realm;
 
+import static com.multilingua.easylanguages.easylanguages.activites.MainActivity.settings;
+
 /**
  * Created by Alexandre on 11/02/2017.
  */
@@ -28,17 +30,21 @@ import io.realm.Realm;
 public class Connecte extends GlobalForMenu {
 
     private String[] listeDeCours;
+    Users client;
 
-    public void onCreate(Bundle SavedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(SavedInstanceState);
-        setContentView(R.layout.connecte);
+        super.onCreate(savedInstanceState);
+
         final RealmController rc = new RealmController(getApplication());
 
-        final Users client = rc.getUserByName(GlobalForMenu.utilisateur);
-        differenceDate(client, rc);
+        setContentView(R.layout.connecte);
+
+        client = rc.getUserByName(GlobalForMenu.utilisateur);
 
         listeDeCours = getCours("cours");
+        differenceDate(client, rc, listeDeCours);
+
         final String [] listeDeCoursDisponible = tableauSpinner(rc.getUserByName(GlobalForMenu.utilisateur).getCours(), listeDeCours);
         final Activity act = this;
         Button coursValides = (Button) findViewById(R.id.coursValides);
@@ -94,20 +100,25 @@ public class Connecte extends GlobalForMenu {
         });
     }
 
-    private void differenceDate(Users client, RealmController rc) {
+    private void differenceDate(Users client, RealmController rc, String[] listeDeCours) {
 
-        Date dateClient = client.getDate();
+        Date dateClient = null;
+        try{
+            dateClient = client.getDate();
+        }catch(Exception e){
+            Long d = System.currentTimeMillis() -500;
+            dateClient = new Date(d);
+        }
         Calendar calendarDernierCours = Calendar.getInstance();
         calendarDernierCours.setTime(dateClient);
+        Date ajd = new Date();
+
 
         long systemDate = SystemClock.currentThreadTimeMillis();
         String dateSystem = String.valueOf(systemDate);
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-
 
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(systemDate);
+        calendar.setTime(ajd);
         Date dateDuCours = calendar.getTime();
 
         int jour = calendar.get(Calendar.DAY_OF_MONTH);
@@ -118,18 +129,14 @@ public class Connecte extends GlobalForMenu {
         int moisClient = calendarDernierCours.get(Calendar.MONTH);
         int anneeClient = calendarDernierCours.get(Calendar.YEAR);
 
-            /*Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(systemDate);
-            String dateString =  dateFormat.format(calendar.getTime());*/
+        Log.d("current_MONTH", String.valueOf(mois));
+        Log.d("current_DAY", String.valueOf(jour));
+        Log.d("current_YEAR", String.valueOf(annee));
 
+        Log.d("jour_cours", String.valueOf(jourClient));
+        Log.d("month_cours", String.valueOf(moisClient));
+        Log.d("year_cours", String.valueOf(anneeClient));
 
-            /*Log.d("A PARSER", String.valueOf(simpleDate.parse(dateSystem)));
-            Date dateCourrante = simpleDate.parse(dateSystem);*/
-            /*String dateString = dateFormat.format(new Date(systemDate));
-            Date dateCourrante = dateFormat.parse(dateString);*/
-            Log.d("MONTH", String.valueOf(mois));
-            Log.d("DAY", String.valueOf(jour));
-            Log.d("YEAR", String.valueOf(annee));
             if(mois == moisClient && jour > jourClient
                     ||
                     mois > moisClient
@@ -137,13 +144,16 @@ public class Connecte extends GlobalForMenu {
                     annee > anneeClient)
             {
                 int num = client.getCours();
-                num++;
-                Realm realm = rc.getRealm();
-                realm.beginTransaction();
-                client.setCours(num);
-                client.setDate(dateDuCours);
-                realm.copyToRealmOrUpdate(client);
-                realm.commitTransaction();
+                if(!(num == listeDeCours.length-1))
+                {
+                    num++;
+                    Realm realm = rc.getRealm();
+                    realm.beginTransaction();
+                    client.setCours(num);
+                    client.setDate(ajd);
+                    realm.copyToRealmOrUpdate(client);
+                    realm.commitTransaction();
+                }
             }
     }
 }

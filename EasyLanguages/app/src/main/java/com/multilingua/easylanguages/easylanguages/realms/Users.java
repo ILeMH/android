@@ -46,6 +46,17 @@ public class Users extends RealmObject {
     public void setCours(int cours) {this.cours = cours;}
 
     public Alerte getAlerte(int i){return alertes.get(i);}
+
+    public Alerte getAlerteWithCode(int code){
+        Alerte alerte = null;
+        for(int i=0; i<alertes.size(); i++){
+            if(alertes.get(i).getCode() == code){
+                alerte = alertes.get(i);
+            }
+        }
+        return alerte;
+    }
+
     public RealmList<Alerte> getAlertes(){return alertes;}
     public void addAlerte(Alerte alerte)
     {

@@ -26,7 +26,7 @@ public class Connection extends DialogFragment {
 
         final RealmController rc = new RealmController(getActivity().getApplication());
         Realm realm = Realm.getDefaultInstance();
-        //Realm realm = rc.getRealm();
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.connection)
                 .setPositiveButton(R.string.confirmation_connection, new DialogInterface.OnClickListener() {
@@ -42,31 +42,19 @@ public class Connection extends DialogFragment {
                             Log.i("MDP", client.getMdp());
                             if(client.getMdp().equals(p.getText().toString()))
                             {
-                                Intent goConnecte = new Intent(getContext(), Connecte.class);
+                                Intent goConnecte = null;
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                                    goConnecte = new Intent(getContext(), Connecte.class);
+                                }
                                 startActivity(goConnecte);
-                                GlobalForMenu.isConnected = true;
                                 GlobalForMenu.utilisateur=identifiantEcrit;
                                 getActivity().finish();
-                            }
-                            else
-                            {
-                                /*Snackbar mySnackbar = Snackbar.make(findViewById(R.id.myCoordinatorLayout),
-                                        R.string.email_archived, Snackbar.LENGTH_SHORT);
-                                mySnackbar.setAction(R.string.undo_string, new MyUndoListener());
-                                mySnackbar.show();*/
-
                             }
                         }catch(Exception e)
                         {
                             Log.e("erreur", e.toString());
                             Snackbar snack = Snackbar.make(getActivity().findViewById(R.id.activity_main), "Erreur de connexion", Snackbar.LENGTH_LONG);
-                            /*snack.setAction("Réessayer", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Log.i("Erreur", "Mauvais identifiants");
-                                    Button connexion = (Button) findViewById(R.id.connexion);
-                                }
-                            });*/
+
                             snack.show();
                         }
                     }
@@ -80,7 +68,6 @@ public class Connection extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.dialog_signin, null));
         Dialog dial = builder.create();
-
 
         return dial;
     }

@@ -5,10 +5,13 @@
     <string name="contact">Contact</string>
     <string name="home">Accueil</string>
     <string name="confirmation_connection">Confirmer</string>
+    <string name="deconnection">Déconnection</string>
     <string name="annuler_connection">Annuler</string>
 
     <string name="username">Utilisateur</string>
     <string name="password">Mot de passe</string>
+
+    <string name="longPressed">Appui long pour supprimer le logo</string>
 
     <string-array name="spinnerliste">
         <item>Cours1</item>

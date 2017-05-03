@@ -12,12 +12,14 @@ public class Alerte extends RealmObject{
 
     private Date date;
     private String nom;
+    private int code;
 
     public Alerte(){}
 
-    public Alerte(String nom, Date date){
+    public Alerte(String nom, Date date, int code){
         this.date = date;
         this.nom = nom;
+        this.code = code;
     }
 
     public Date getDate(){return date;}
@@ -25,4 +27,7 @@ public class Alerte extends RealmObject{
 
     public String getNom(){return nom;}
     public void setNom(String nom){this.nom=nom;}
+
+    public int getCode(){return code;}
+    public void setCode(int code){this.code = code;}
 }

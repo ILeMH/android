@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">EasyLanguages</string>
-    <string name="connection">Connection</string>
+    <string name="connection">Connexion</string>
     <string name="contact">Contact</string>
     <string name="home">Home</string>
-    <string name="confirmation_connection">Connection</string>
+    <string name="confirmation_connection">Connexion</string>
+    <string name="deconnection">Disconnexion</string>
     <string name="annuler_connection">Cancel</string>
 
-    <string name="username">Username</string>
+    <string name="username">Login</string>
     <string name="password">Password</string>
+    <string name="longPressed">Long press for deleting the icon</string>
 
     <string-array name="spinnerliste">
         <item>Cours1</item>

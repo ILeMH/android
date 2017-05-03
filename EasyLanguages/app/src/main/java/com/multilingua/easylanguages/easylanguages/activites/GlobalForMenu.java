@@ -1,16 +1,28 @@
 package com.multilingua.easylanguages.easylanguages.activites;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.multilingua.easylanguages.easylanguages.R;
+import com.multilingua.easylanguages.easylanguages.realms.RealmController;
+import com.multilingua.easylanguages.easylanguages.realms.Users;
 
 import java.io.IOException;
+import java.util.Calendar;
+
+import io.realm.Realm;
+
+import static com.multilingua.easylanguages.easylanguages.activites.MainActivity.settings;
 
 /**
  * Created by Alexandre on 03/03/2017.
@@ -18,8 +30,18 @@ import java.io.IOException;
 
 public class GlobalForMenu extends AppCompatActivity{
 
-    public static boolean isConnected;
     public static String utilisateur;
+    public static Users client;
+    public static RealmController rc;
+    static SharedPreferences settings;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        this.rc = new RealmController(this.getApplication());
+        Realm.init(this);
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -30,7 +52,8 @@ public class GlobalForMenu extends AppCompatActivity{
         String[] coursDispoFinal = new String[cours];
         for(int j = 0; j < cours; j++)
         {
-            coursDispoFinal[j] = liste[j];
+            String[] separated = liste[j].split("\\.");
+            coursDispoFinal[j] = separated[0];
         }
         return coursDispoFinal;
     }
@@ -51,18 +74,13 @@ public class GlobalForMenu extends AppCompatActivity{
                 return true;
             case R.id.home:
                 ConformationDeconnexion deco = new ConformationDeconnexion();
-                deco.show(getFragmentManager(), "Confirmation");
+                deco.show(getFragmentManager(), getString(R.string.deconnection));
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("client", null);
+                editor.commit();
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public boolean isConnected(){
-        return this.isConnected;
-    }
-
-    public void setIsConnected(boolean bool){
-        this.isConnected = bool;
     }
 
     public String[] getCours(String path){
@@ -80,5 +98,15 @@ public class GlobalForMenu extends AppCompatActivity{
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    @Override
+    public void onStop(){
+        settings = getPreferences(0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("client", utilisateur);
+        editor.commit();
+        super.onStop();
     }
 }
